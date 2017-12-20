@@ -1,0 +1,17 @@
+curl -v http://localhost:8181/
+
+curl -H "Content-Type:application/json" -d '{"brand":"Iphone7", "lowestPrice":3599, "highestPrice":5999, "color":["Gold","Grey","Black","Sliver"]}' -v http://localhost:8181/add
+
+curl -H "Content-Type:application/json" -d '{"brand":"Honor9", "lowestPrice":1899, "highestPrice":3499, "color":["Gold","Grey","Black","Blue","Green"]}' -v http://localhost:8181/add
+
+curl -H "Content-Type:application/json" -d '{"brand":"HuaWei-P10", "lowestPrice":3488, "highestPrice":3988, "color":["Gold","Grey","Black","Blue","Green","White"]}' -v http://localhost:8181/add
+
+curl -H "Content-Type:application/json" -d '{"brand":"Galaxy-S8", "lowestPrice":4238, "highestPrice":5688, "color":["Pink","Grey","Black","Silver"]}' -v http://localhost:8181/add
+
+curl -H "Content-Type:application/json" -d '{"brand":"XiaoMi6", "lowestPrice":2299, "highestPrice":2899, "color":["Blue","Grey","Black"]}' -v http://localhost:8181/add
+
+curl -H "Content-Type:application/json" -d '{"brand":"Xperia-XZ1", "lowestPrice":3599, "highestPrice":3999, "color":["Blue","Grey","Black","Pink"]}' -v http://localhost:8181/add
+
+curl -H "Content-Type:application/json" -d '{"brand":"Vivo-Xplay6", "lowestPrice":3799, "highestPrice":3999, "color":["Blue","Grey","Black","Gold"]}' -v http://localhost:8181/add
+
+curl -v http://localhost:8181/search
