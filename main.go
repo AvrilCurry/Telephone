@@ -35,6 +35,7 @@ func AddTelephone(w http.ResponseWriter, r *http.Request) {
 	var data []byte
 	var isDataExisted = false
 
+	// 读取传入的数据， 1048576=1M, 限制传入数据的大小
 	body, err := ioutil.ReadAll(io.LimitReader(r.Body, 1048576))
 	if err != nil {
 		log.Println(2)
@@ -56,6 +57,7 @@ func AddTelephone(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	// 将数据写入data.json文件
 	fout, err := os.OpenFile("./data.json", os.O_RDWR|os.O_APPEND, os.ModePerm)
 
 	if err != nil {
@@ -79,6 +81,7 @@ func AddTelephone(w http.ResponseWriter, r *http.Request) {
 
 		err = json.Unmarshal(data, &dataTele)
 
+		// 判断数据是否已经存在
 		if tele.Brand == dataTele.Brand {
 			isDataExisted = true
 			break
@@ -93,7 +96,7 @@ func AddTelephone(w http.ResponseWriter, r *http.Request) {
 		buffWriter.WriteString("\n")
 		buffWriter.Flush()
 		fout.Close()
-		w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+		w.Header().Set("Content-Type", "application/json; charset=UTF-8") // 设置response的头部信息
 		w.WriteHeader(http.StatusCreated)
 		if err = json.NewEncoder(w).Encode(tele); err != nil {
 			panic(err)
@@ -137,6 +140,7 @@ func searchTelephone(w http.ResponseWriter, r *http.Request) {
 	var data []byte
 	var ColorArray []string
 
+	// 判断传入的是什么参数
 	vars := mux.Vars(r)
 	brand := vars["brandName"]
 	lowestPrice := vars["low"]
@@ -177,6 +181,7 @@ func searchTelephone(w http.ResponseWriter, r *http.Request) {
 		if brand == tele.Brand {
 			isBrandExisted = true
 		}
+		// 将字符串转为数字
 		low, _ := strconv.Atoi(lowestPrice)
 		high, _ := strconv.Atoi(highestPrice)
 		if low <= tele.LowestPrice && high >= tele.HighestPrice {
@@ -207,8 +212,10 @@ func searchTelephone(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	// 使用了 gorilla/mux 定义了一个路由器
 	router := mux.NewRouter().StrictSlash(true)
 
+	// 定义路由规则  Index,AddTelephone,listTelephone,searchTelephone都是处理器，处理对应的请求
 	router.HandleFunc("/", Index).Methods("Get")
 	router.HandleFunc("/add", AddTelephone).Methods("Post")
 	router.HandleFunc("/search", listTelephone).Methods("Get")
