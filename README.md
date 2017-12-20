@@ -1,11 +1,18 @@
 # Telephone
 A application like the Cloudgo
 
+
+路由规则：
 http://localhost:8181/   访问根文件
+
 http://localhost:8181/add  向数据库（这里是data.json文件添加数据，以post的方式）
+
 http://localhost:8181/search  列出数据库(这里是data.json里面所有的数据)
+
 http://localhost:8181/search/brand={brandName}  在数据库（这里是data.json文件）里面搜索以brandName为brand的记录
+
 http://localhost:8181/search/lowestPrice={low}&highestPrice={high}  在数据库（这里是data.json文件）里面搜索在这个价格范围内的所有记录
+
 http://localhost:8181/search/color={colorArray}  在数据库（这里是data.json文件）里面搜索包含colorArray的颜色的记录
 
 
