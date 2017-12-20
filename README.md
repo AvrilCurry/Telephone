@@ -18,6 +18,5 @@ curl测试的结果放在screenShot文件夹里面，和data.txt里面的顺序�
 ab压力测试我只进行了一个简单的测试，测试结果（以ab开头的图片）也是放在screenShot文件夹中。
 
 ab -n 1000 -c 1000 http://localhost:8181
-
 -n 请求次数
 -c 并发数
